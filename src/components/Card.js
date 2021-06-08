@@ -1,13 +1,17 @@
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import getEnvVars from "../../environment";
 
-const Card = ({ name, image, otherInfo }) => {
+const { imageUrl } = getEnvVars();
+const { width, height } = Dimensions.get("screen");
+
+const Card = ({ name, number, otherInfo }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
       <Image
         source={{
-          uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png`,
+          uri: `${imageUrl}${number}.png`,
         }}
         style={styles.image}
       />
@@ -26,10 +30,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
+    alignSelf: "center",
   },
   image: {
-    width: 300,
-    height: 300,
+    width: width * 0.8,
+    height: height * 0.35,
   },
 });
 
