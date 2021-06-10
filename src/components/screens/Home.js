@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import fetchPokemons from "../../api";
+import { fetchPokemons } from "../../api";
 import CardList from "../CardList";
 
 const Home = () => {

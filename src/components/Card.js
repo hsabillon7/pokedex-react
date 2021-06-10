@@ -3,9 +3,9 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import getEnvVars from "../../environment";
 
 const { imageUrl } = getEnvVars();
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
-const Card = ({ name, number, otherInfo }) => {
+const Card = ({ name, number }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
@@ -15,7 +15,7 @@ const Card = ({ name, number, otherInfo }) => {
         }}
         style={styles.image}
       />
-      <Text>{otherInfo}</Text>
+      <Text># {number}</Text>
     </View>
   );
 };
@@ -26,15 +26,17 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: "#000",
     borderWidth: 1,
+    alignItems: "center",
   },
   name: {
     fontSize: 18,
     fontWeight: "bold",
-    alignSelf: "center",
+    // alignSelf: "center",
   },
   image: {
     width: width * 0.8,
-    height: height * 0.35,
+    height: width * 0.8,
+    resizeMode: "contain",
   },
 });
 
