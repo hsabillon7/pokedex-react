@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { fetchPokemons } from "../../api";
 import CardList from "../CardList";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [pokemons, setPokemons] = useState({});
 
   const getPokemons = async () => {
@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <View>
       <Text>Pokedex con React Native y PokeAPI</Text>
-      <CardList pokemons={pokemons} />
+      <CardList pokemons={pokemons} navigation={navigation} />
     </View>
   );
 };
