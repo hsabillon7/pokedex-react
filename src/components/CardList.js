@@ -1,13 +1,26 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Card from "./Card";
 
-const CardList = ({ pokemons }) => {
+const CardList = ({ pokemons, navigation }) => {
   return (
     <View>
       {pokemons.count &&
-        pokemons.results.map((pokemon, index) => {
-          return <Card key={index} name={pokemon.name} number={index + 1} />;
+        pokemons.results.map((pokemon) => {
+          return (
+            <TouchableOpacity
+              key={pokemon.pokemonInfo.id}
+              onPress={() => {
+                navigation.navigate("Info", { pokemon });
+              }}
+            >
+              <Card
+                name={pokemon.name}
+                number={pokemon.pokemonInfo.id}
+                types={pokemon.pokemonInfo.types}
+              />
+            </TouchableOpacity>
+          );
         })}
     </View>
   );
