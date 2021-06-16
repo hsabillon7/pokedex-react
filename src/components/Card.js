@@ -1,21 +1,18 @@
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import getEnvVars from "../../environment";
+import PokemonImage from "./PokemonImage";
 
-const { imageUrl } = getEnvVars();
 const { width } = Dimensions.get("screen");
 
-const Card = ({ name, number }) => {
+const Card = ({ name, number, types }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
-      <Image
-        source={{
-          uri: `${imageUrl}${number}.png`,
-        }}
-        style={styles.image}
-      />
+      <PokemonImage number={number} />
       <Text># {number}</Text>
+      {types.map((type, index) => (
+        <Text key={index}>{type.type.name}</Text>
+      ))}
     </View>
   );
 };
@@ -32,11 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     // alignSelf: "center",
-  },
-  image: {
-    width: width * 0.8,
-    height: width * 0.8,
-    resizeMode: "contain",
   },
 });
 
