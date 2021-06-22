@@ -1,31 +1,47 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Title } from "react-native-paper";
 import Card from "./Card";
 
 const CardList = ({ pokemons, navigation }) => {
-  return (
-    <View>
-      {pokemons.count &&
-        pokemons.results.map((pokemon) => {
-          return (
-            <TouchableOpacity
-              key={pokemon.pokemonInfo.id}
-              onPress={() => {
-                navigation.navigate("Info", { pokemon });
-              }}
-            >
-              <Card
-                name={pokemon.name}
-                number={pokemon.pokemonInfo.id}
-                types={pokemon.pokemonInfo.types}
-              />
-            </TouchableOpacity>
-          );
-        })}
+  const emptyFlatList = (
+    <View style={styles.emptyList}>
+      <Title>Pokemon data not found :(</Title>
     </View>
+  );
+
+  return (
+    <FlatList
+      data={pokemons.results}
+      keyExtractor={(item) => item.pokemonInfo.id}
+      showsVerticalScrollIndicator={false}
+      ListEmptyComponent={emptyFlatList}
+      renderItem={({ item }) => {
+        return (
+          <TouchableOpacity
+            key={item.pokemonInfo.id}
+            onPress={() => {
+              navigation.navigate("Info", { pokemon: item });
+            }}
+          >
+            <Card
+              name={item.name}
+              number={item.pokemonInfo.id}
+              types={item.pokemonInfo.types}
+            />
+          </TouchableOpacity>
+        );
+      }}
+    />
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  emptyList: {
+    flex: 1,
+    marginTop: 10,
+    alignItems: "center",
+  },
+});
 
 export default CardList;
