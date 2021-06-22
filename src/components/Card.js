@@ -1,35 +1,48 @@
 import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Badge, Card } from "react-native-paper";
 import PokemonImage from "./PokemonImage";
+import theme from "../theme";
 
 const { width } = Dimensions.get("screen");
 
-const Card = ({ name, number, types }) => {
+const PokemonCard = ({ name, number, types }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{name}</Text>
-      <PokemonImage number={number} />
-      <Text># {number}</Text>
-      {types.map((type, index) => (
-        <Text key={index}>{type.type.name}</Text>
-      ))}
-    </View>
+    <Card style={styles.card}>
+      <Card.Title title={name} style={styles.title} />
+      <Card.Content>
+        <PokemonImage number={number} />
+        <Text># {number}</Text>
+      </Card.Content>
+      <Card.Actions style={styles.actions}>
+        {types.map((type, index) => (
+          <Badge
+            key={index}
+            size={25}
+            style={{
+              backgroundColor: theme.colors[type.type.name],
+              marginRight: 2,
+            }}
+          >
+            {type.type.name}
+          </Badge>
+        ))}
+      </Card.Actions>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
+  card: {
+    padding: 10,
     margin: 10,
-    borderColor: "#000",
-    borderWidth: 1,
-    alignItems: "center",
   },
-  name: {
-    fontSize: 18,
-    fontWeight: "bold",
-    // alignSelf: "center",
+  title: {
+    alignSelf: "center",
+  },
+  actions: {
+    alignContent: "center",
   },
 });
 
-export default Card;
+export default PokemonCard;
