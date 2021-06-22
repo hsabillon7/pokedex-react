@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { fetchPokemons } from "../../api";
 import CardList from "../CardList";
 
@@ -18,7 +18,6 @@ const Home = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Pokedex con React Native y PokeAPI</Text>
       <CardList pokemons={pokemons} navigation={navigation} />
     </View>
   );
