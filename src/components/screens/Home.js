@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, SafeAreaView } from "react-native";
+import Constants from "expo-constants";
 import { fetchPokemons } from "../../api";
 import CardList from "../CardList";
+import SearchPokemon from "../SearchPokemon";
 
 const Home = ({ navigation }) => {
   const [pokemons, setPokemons] = useState({});
@@ -17,12 +19,18 @@ const Home = ({ navigation }) => {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView style={styles.safeArea}>
+      <SearchPokemon navigation={navigation} />
       <CardList pokemons={pokemons} navigation={navigation} />
-    </View>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+  },
+});
 
 export default Home;
