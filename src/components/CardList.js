@@ -13,13 +13,12 @@ const CardList = ({ pokemons, navigation }) => {
   return (
     <FlatList
       data={pokemons.results}
-      keyExtractor={(item) => item.pokemonInfo.id}
+      keyExtractor={(item) => item.pokemonInfo.id.toString()}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={emptyFlatList}
       renderItem={({ item }) => {
         return (
           <TouchableOpacity
-            key={item.pokemonInfo.id}
             onPress={() => {
               navigation.navigate("Info", { pokemon: item });
             }}

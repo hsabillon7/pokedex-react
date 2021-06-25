@@ -15,9 +15,9 @@ const PokemonCard = ({ name, number, types }) => {
         <Text># {number}</Text>
       </Card.Content>
       <Card.Actions style={styles.actions}>
-        {types.map((type, index) => (
+        {types.map((type) => (
           <Badge
-            key={index}
+            key={type.type.name}
             size={25}
             style={{
               backgroundColor: theme.colors[type.type.name],
