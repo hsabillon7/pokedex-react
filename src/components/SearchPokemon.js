@@ -7,7 +7,7 @@ const SearchPokemon = ({ navigation }) => {
   const [search, setSearch] = useState("");
 
   return (
-    <View>
+    <View style={styles.container}>
       <Searchbar
         placeholder="Search pokemon by name or number"
         value={search}
@@ -18,6 +18,10 @@ const SearchPokemon = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 5,
+  },
+});
 
 export default SearchPokemon;

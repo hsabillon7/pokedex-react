@@ -20,7 +20,11 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="Info" component={Info} />
-          <Stack.Screen name="SearchResults" component={SearchResults} />
+          <Stack.Screen
+            name="SearchResults"
+            component={SearchResults}
+            options={{ title: "Search results" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
