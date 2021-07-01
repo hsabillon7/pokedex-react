@@ -13,9 +13,11 @@ const PokemonStat = ({ stats }) => {
   return (
     <View style={styles.container}>
       {stats.map((stat) => (
-        <View style={styles.statContainer}>
-          <Text style={styles.statName}>{capitalize(stat.stat.name)}</Text>
-          <Text style={styles.statValue}>{stat.base_stat}</Text>
+        <View>
+          <View key style={styles.statContainer}>
+            <Text style={styles.statName}>{capitalize(stat.stat.name)}</Text>
+            <Text style={styles.statValue}>{stat.base_stat}</Text>
+          </View>
           <ProgressBar
             style={styles.statBar}
             progress={stat.base_stat / 255}
@@ -39,10 +41,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   statName: {
-    width: "30%",
+    width: "50%",
   },
   statValue: {
-    width: "8%",
+    width: "50%",
   },
   statBar: {
     height: 15,
