@@ -1,20 +1,21 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { ProgressBar, Text } from "react-native-paper";
-import { capitalize } from "../utils";
+import { capitalize } from "../../utils";
+import theme from "../../theme";
 
 const PokemonStat = ({ stats }) => {
   const statColor = (stat) => {
-    if (stat <= 0.3) return "red";
-    else if (stat > 0.3 && stat < 0.6) return "orange";
+    if (stat <= 0.3) return theme.colors.statLow;
+    else if (stat > 0.3 && stat < 0.6) return theme.colors.statMedium;
 
-    return "green";
+    return theme.colors.statHigh;
   };
   return (
     <View style={styles.container}>
-      {stats.map((stat) => (
-        <View>
-          <View key style={styles.statContainer}>
+      {stats.map((stat, index) => (
+        <View key={index.toString()}>
+          <View style={styles.statContainer}>
             <Text style={styles.statName}>{capitalize(stat.stat.name)}</Text>
             <Text style={styles.statValue}>{stat.base_stat}</Text>
           </View>
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   statContainer: {
-    flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "flex-start",
@@ -45,9 +45,12 @@ const styles = StyleSheet.create({
   },
   statValue: {
     width: "50%",
+    textAlign: "right",
   },
   statBar: {
+    marginHorizontal: 10,
     height: 15,
+    marginBottom: 5,
   },
 });
 

@@ -10,9 +10,9 @@ export const leftZeroPad = (number) => {
 };
 
 export const decimiterToMeter = (height) => {
-  return `${(height / 0.1).toFixed(2)} M`;
+  return `${(height / 10).toFixed(2)} m`;
 };
 
 export const hectogramToPound = (weight) => {
-  return `${(weight / 0.220462).toFixed(2)} P`;
+  return `${(weight / 4.536).toFixed(2)} lb`;
 };

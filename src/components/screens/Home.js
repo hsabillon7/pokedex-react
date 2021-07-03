@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Platform, StyleSheet, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
 import { fetchPokemons } from "../../api";
-import CardList from "../CardList";
-import SearchPokemon from "../SearchPokemon";
+import CardList from "../shared/CardList";
+import SearchPokemon from "../shared/SearchPokemon";
+import { ActivityIndicator } from "react-native-paper";
 
 const Home = ({ navigation }) => {
   const [pokemons, setPokemons] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const getPokemons = async () => {
     const response = await fetchPokemons();
 
     setPokemons(response);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -21,7 +24,11 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <SearchPokemon navigation={navigation} />
-      <CardList pokemons={pokemons} navigation={navigation} />
+      {loading ? (
+        <ActivityIndicator animating={loading} size="large" />
+      ) : (
+        <CardList pokemons={pokemons} navigation={navigation} />
+      )}
     </SafeAreaView>
   );
 };

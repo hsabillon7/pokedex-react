@@ -19,7 +19,11 @@ export default function App() {
             component={Home}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Info" component={Info} />
+          <Stack.Screen
+            name="Info"
+            component={Info}
+            options={{ title: "Pokemon information" }}
+          />
           <Stack.Screen
             name="SearchResults"
             component={SearchResults}

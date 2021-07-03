@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ActivityIndicator, Title } from "react-native-paper";
 import { searchPokemon } from "../../api";
-import Card from "../Card";
+import Card from "../shared/Card";
 
-const SearchResults = ({ route }) => {
+const SearchResults = ({ route, navigation }) => {
   const { search } = route.params;
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState("");
@@ -27,7 +27,13 @@ const SearchResults = ({ route }) => {
     <View>
       {pokemon && error ? <ActivityIndicator size="large" /> : null}
       {pokemon ? (
-        <Card name={pokemon.name} number={pokemon.id} types={pokemon.types} />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Info", { pokemon });
+          }}
+        >
+          <Card name={pokemon.name} number={pokemon.id} types={pokemon.types} />
+        </TouchableOpacity>
       ) : null}
       {error ? <Title>{error}</Title> : null}
     </View>

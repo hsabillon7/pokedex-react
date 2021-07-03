@@ -24,6 +24,11 @@ const theme = {
     fairy: "#f09ad9",
     unknown: "#66625c",
     shadow: "#66625c",
+    statLow: "#de4141",
+    statMedium: "#f59700",
+    statHigh: "#5a9c39",
+    white: "#ffffff",
+    number: "#e9e8e7",
   },
 };
 
