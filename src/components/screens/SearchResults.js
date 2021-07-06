@@ -29,7 +29,13 @@ const SearchResults = ({ route, navigation }) => {
       {pokemon ? (
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Info", { pokemon });
+            navigation.navigate("Info", {
+              pokemon: {
+                id: pokemon.id,
+                name: pokemon.name,
+                pokemonInfo: pokemon,
+              },
+            });
           }}
         >
           <Card name={pokemon.name} number={pokemon.id} types={pokemon.types} />

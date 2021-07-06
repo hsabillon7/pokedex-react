@@ -15,18 +15,20 @@ const Info = ({ route }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Title>{capitalize(pokemon.name)}</Title>
-        <Text style={styles.number}>
-          #{leftZeroPad(pokemon.pokemonInfo.id)}
-        </Text>
-      </View>
-      <View style={styles.image}>
-        <PokemonImage
-          number={pokemon.pokemonInfo.id}
-          width={width * 0.5}
-          height={width * 0.5}
-        />
+      <View>
+        <View style={styles.header}>
+          <Title>{capitalize(pokemon.name)}</Title>
+          <Text style={styles.number}>
+            #{leftZeroPad(pokemon.pokemonInfo.id)}
+          </Text>
+        </View>
+        <View style={styles.image}>
+          <PokemonImage
+            number={pokemon.pokemonInfo.id}
+            width={width * 0.5}
+            height={width * 0.5}
+          />
+        </View>
       </View>
       <View style={styles.info}>
         <Text style={styles.infoText}>
